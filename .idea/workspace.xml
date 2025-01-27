@@ -5,30 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fbdf6a22-3c1c-4938-8053-a6513e3c1ee2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controllers/GameController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controllers/RobotController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Enums/Directions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/Battlefield.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/Coordinates.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/NewRobot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/Robot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Services/RobotService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Views/AskPlayerNameView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Views/AskRobotNameView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Views/AskSkillPointsView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Views/BattlefieldView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Views/DisplayWinnerView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Views/IntroScreenView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Views/MoveRobotView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/RobotWarsOpenApiSpec 4.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/spring-boot-starter-data-jpa-3.4.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Controllers/GameStarter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Models/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Models/MapData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Models/MapItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Services/JsonParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Battlefield.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Battlefield.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/NewRobot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,14 +24,26 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "MayraEge"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/MayraEge/RobotWarsFinal",
+    "accountId": "1219ecbe-d0f0-4d78-bcd7-62f958c68da8"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>

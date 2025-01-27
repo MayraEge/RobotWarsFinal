@@ -11,6 +11,7 @@ public class Battlefield {
         this.width = width;
         this.height = height;
         this.map = new int[width][height];
+        boardInit();
     }
 
     public int getWidth() {

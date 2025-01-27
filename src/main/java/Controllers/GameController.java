@@ -1,14 +1,13 @@
 package Controllers;
 
 import Enums.Directions;
-import Models.Battlefield;
-import Models.Coordinates;
-import Models.Robot;
-import Services.RobotService;
+import Models.*;
+import Services.*;
 import Views.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -18,55 +17,62 @@ import java.net.URL;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 
 @RestController
 public class GameController {
+    private List<Game> gameList = new ArrayList<>();
+    private static final String api_url = ("https://82rvkz5o22.execute-api.eu-central-1.amazonaws.com/prod/");
 
-    private List<Robot> robotList = new ArrayList<>();
-
-
-    public static void main(String[] args) throws IOException, InterruptedException {
-        String url = ("https://82rvkz5o22.execute-api.eu-central-1.amazonaws.com/prod/");
-        String jsonInputString ="{\"name\": \"Bjarne\", \"health\": 5, \"movementRate\": 4, \"attackDamage\": 3, \"attackRange\": 3}";
-
-        IntroScreenView.display();
-        Battlefield battlefield = new Battlefield(15, 10);
-        String robotName = AskRobotNameView.display();
-        Coordinates defaultCoordinates = new Coordinates(0, 0, 15, 10);
-        Robot player = new Robot("1", robotName, 1, 1, 1, 1, false);
-        Robot target = new Robot("2", "[O]", 1, 1, 1, 1, false);
-
-        AskSkillPointsView.setStats(player);
-        AskSkillPointsView.display(player);
-
-        List<Robot> robots = new ArrayList<>();
-        robots.add(player);
-        robots.add(target);
-        System.out.println("Sie haben folgenden Roboter ausgewählt: " + player.getName());
-
-        BattlefieldView.display(robots, battlefield);
-        while (!player.isKnockedOut() && !target.isKnockedOut()) {
-            DisplayWinnerView.display(player, target);
-            int move = 1;
-            while (move <= player.getMovementRange() && !player.isKnockedOut() && !target.isKnockedOut()) {
-                Directions direction = MoveRobotView.turn();
-                if (Battlefield.validTurn(direction, player)) {
-                    player.setX(player.getX() + direction.getX());
-                    player.setY(player.getY() + direction.getY());
-                    move += 1;
-                } else {
-                    System.out.println("Zug ungültig.");
+    @PostMapping("/api/maps/map/{id}")
+    public ResponseEntity<String> addMap(@RequestBody String json) {
+        try {
+            MapData[] mapDataArray = JsonParser.parseMapData(json);
+            for (MapData mapData : mapDataArray) {
+                Battlefield battlefield = new Battlefield(mapData.getMapSizeX(), mapData.getMapSize() / mapData.getMapSizeX());
+                for (MapItem item : mapData.getMapItems()) {
+                    int x = item.getIndex() % mapData.getMapSizeX();
+                    int y = item.getIndex() / mapData.getMapSizeX();
+                    battlefield.getMap()[x][y] = item.getType().equals("ROBOT") ? 1 : 2;
                 }
-                BattlefieldView.display(robots, battlefield);
-                if (RobotService.inRange(player, target)) {
-                    Robot.attack(player, target);
-                    DisplayWinnerView.display(player, target);
-                }
+                Game game = new Game(mapData.getId(), "GameID", battlefield, 2);
+                gameList.add(game);
             }
+            return ResponseEntity.status(HttpStatus.CREATED).body("Map erfolgreich hinzugefügt!!");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ungültige JSON-Daten.");
         }
     }
-    private static void sendPostRequest(String url, String jsonInputString) {
+
+    @PostMapping("/api/games/game")
+    public ResponseEntity<String> addGame(@RequestBody Game game) {
+        if (game != null) {
+            gameList.add(game);
+            String jsonInputString = String.format("{\"name\": \"%s\", \"players\": %d}",
+                    game.getName(), game.getPlayers());
+            String url = api_url + "api/games/game";
+
+            sendPostRequest(url, jsonInputString);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Spiel erfolgreich erstellt!!");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ungültiges Spiel wird nicht erstellt.");
+        }
+    }
+
+    @PostMapping("/api/games/{gameId}/join")
+    public ResponseEntity<String> joinGame(@PathVariable String gameId, @RequestParam String playerName) {
+        Optional<Game> gameOptional = gameList.stream().filter(game -> game.getId().equals(gameId)).findFirst();
+        if (gameOptional.isPresent()) {
+            Game game = gameOptional.get();
+            game.addPlayerName(playerName);
+            return ResponseEntity.ok("Jawoll, Spieler erfolgreich hinzugefügt!!");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Spiel wurde nicht gefunden.");
+        }
+    }
+
+    private void sendPostRequest(String url, String jsonInputString) {
         try {
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -80,19 +86,22 @@ public class GameController {
                 os.write(input, 0, input.length);
             }
 
-            try (BufferedReader br = new BufferedReader(
-                    new InputStreamReader(con.getInputStream(), "utf-8"))) {
-                StringBuilder response = new StringBuilder();
-                String responseLine;
-                while ((responseLine = br.readLine()) != null) {
-                    response.append(responseLine.trim());
+            int responseCode = con.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                    StringBuilder response = new StringBuilder();
+                    String responseLine;
+                    while ((responseLine = br.readLine()) != null) {
+                        response.append(responseLine.trim());
+                    }
+                    System.out.println("Response: " + response.toString());
                 }
-                System.out.println(response.toString());
+            } else {
+                System.out.println("POST request failed with response code: " + responseCode);
             }
-
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("An error occurred during the POST request.");
         }
     }
-
 }
