@@ -6,15 +6,15 @@ import java.util.List;
 public class Game {
     private String id;
     private String name;
-    private Battlefield battlefield;
+    private Map map;
     private int players;
     private List<String> playerNames;
     private String mapId;
 
-    public Game(String id, String name, Battlefield battlefield, int players) {
+    public Game(String id, String name, Map map, int players) {
         this.id = id;
         this.name = name;
-        this.battlefield = battlefield;
+        this.map = map;
         this.players = players;
         this.playerNames = new ArrayList<>();
     }
@@ -45,11 +45,11 @@ public class Game {
         public String getMapId() {
             return mapId;
         }
-        public Battlefield getBattlefield() {
-            return battlefield;
+        public Map getBattlefield() {
+            return map;
         }
-        public void setBattlefield(Battlefield battlefield) {
-            this.battlefield = battlefield;
+        public void setBattlefield(Map map) {
+            this.map = map;
         }
         public void setMapId(String mapId) {
             this.mapId = mapId;

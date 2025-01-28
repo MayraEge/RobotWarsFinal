@@ -1,9 +1,7 @@
 package Controllers;
 
-import Enums.Directions;
 import Models.*;
 import Services.*;
-import Views.*;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,13 +27,13 @@ public class GameController {
         try {
             MapData[] mapDataArray = JsonParser.parseMapData(json);
             for (MapData mapData : mapDataArray) {
-                Battlefield battlefield = new Battlefield(mapData.getMapSizeX(), mapData.getMapSize() / mapData.getMapSizeX());
+                Map map = new Map(mapData.getMapSizeX(), mapData.getMapSize() / mapData.getMapSizeX());
                 for (MapItem item : mapData.getMapItems()) {
                     int x = item.getIndex() % mapData.getMapSizeX();
                     int y = item.getIndex() / mapData.getMapSizeX();
-                    battlefield.getMap()[x][y] = item.getType().equals("ROBOT") ? 1 : 2;
+                    map.getMap()[x][y] = item.getType().equals("ROBOT") ? 1 : 2;
                 }
-                Game game = new Game(mapData.getId(), "GameID", battlefield, 2);
+                Game game = new Game(mapData.getId(), "GameID", map, 2);
                 gameList.add(game);
             }
             return ResponseEntity.status(HttpStatus.CREATED).body("Map erfolgreich hinzugefügt!!");

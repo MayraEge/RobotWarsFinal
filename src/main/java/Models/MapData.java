@@ -6,6 +6,7 @@ public class MapData {
     private int mapSizeX;
     private int mapSize;
     private List<MapItem> mapItems;
+    private Robot target;
 
 
     public String getId() {
@@ -32,8 +33,20 @@ public class MapData {
         this.mapSize = mapSize;
     }
 
+    public Robot getTarget() {
+        return target;
+    }
+
+    public void setTarget(Robot target) {
+        this.target = target;
+    }
+
+
     public List<MapItem> getMapItems() {
         return mapItems;
+    }
+    private static boolean isValidMove(int coordinate, int limit) {
+        return coordinate >= 0 && coordinate <= limit;
     }
 
     public void setMapItems(List<MapItem> mapItems) {

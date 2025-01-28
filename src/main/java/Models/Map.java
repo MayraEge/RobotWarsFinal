@@ -2,12 +2,12 @@ package Models;
 
 import Enums.Directions;
 
-public class Battlefield {
+public class Map {
     private int width;
     private int height;
     protected static int[][] map;
 
-    public Battlefield(int width, int height) {
+    public Map(int width, int height) {
         this.width = width;
         this.height = height;
         this.map = new int[width][height];
