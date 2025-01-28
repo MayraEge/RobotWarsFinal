@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fbdf6a22-3c1c-4938-8053-a6513e3c1ee2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controllers/GameStarter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/MapData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/MapItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Services/JsonParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Battlefield.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Battlefield.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/NewRobot.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ConnectionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Views/IntroScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/IntroScreenView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,18 +25,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "MayraEge"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MayraEge&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/MayraEge/RobotWarsFinal",
-    "accountId": "1219ecbe-d0f0-4d78-bcd7-62f958c68da8"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MayraEge/RobotWarsFinal&quot;,
+    &quot;accountId&quot;: &quot;1219ecbe-d0f0-4d78-bcd7-62f958c68da8&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -58,6 +51,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.GameController.executor": "Run",
+    "Application.GameStarter.executor": "Run",
     "DefaultHtmlFileTemplate": "HTML File",
     "Maven.RobotWarsClean [install].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -85,5 +79,20 @@
       <updated>1737728090112</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/ConnectionTest.java</url>
+          <line>13</line>
+          <properties class="ConnectionTest" method="run">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

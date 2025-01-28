@@ -3,7 +3,7 @@ package Views;
 public class IntroScreenView {
     public static void display() {
         String name = AskPlayerNameView.display();
-        String story = "Herzlich Willkommen bei Robot Wars! \n" +
+        String story = "Herzlich Willkommen, " + name + ", bei Robot Wars! \n" +
                 "In diesem miserabel programmierten Spiel darfst du Dich im Duell gegen andere, starke Roboter beweisen.\n" +
                 "Wirst du deinen Zug machen können, bevor die Verbindung abbricht? Finden wir es heraus!\n";
 
