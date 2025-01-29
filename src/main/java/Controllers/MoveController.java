@@ -14,6 +14,11 @@ public class MoveController {
     @Autowired
     private MoveService moveService;
 
+    @GetMapping("/game/{gameId}")
+    public List<Move> getMovesByGameId(@PathVariable String gameId) {
+        return moveService.getMovesByGameId(gameId);
+    }
+
     @GetMapping("/api/games/game/{id}/move")
     public List <Move> getAllMoves(@PathVariable String id){
         return moveService.getMovesByGameId(id);

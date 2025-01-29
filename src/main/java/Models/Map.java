@@ -5,11 +5,13 @@ import Enums.Directions;
 public class Map {
     private int width;
     private int height;
+    private String id;
     protected static int[][] map;
 
     public Map(int width, int height) {
         this.width = width;
         this.height = height;
+        this.id = id;
         this.map = new int[width][height];
         boardInit();
     }
@@ -30,12 +32,30 @@ public class Map {
         this.height = height;
     }
 
+    public String getId(){
+        return id;
+    }
+
+    public void setId(String id){
+        this.id = id;
+    }
+
     public int[][] getMap() {
         return map;
     }
 
     public void setMap(int[][] map) {
         this.map = map;
+    }
+
+    private Robot target;
+
+    public Robot getTarget() {
+        return target;
+    }
+
+    public void setTarget(Robot target) {
+        this.target = target;
     }
 
     private void boardInit() {
@@ -48,21 +68,21 @@ public class Map {
 
     public static boolean validTurn(Directions direction, Robot player) {
         switch (direction) {
-            case SUED:
+            case SOUTH:
                 return isValidMove(player.getY() + 1, 9);
             case WEST:
                 return isValidMove(player.getX() - 1, 0);
-            case NORD:
+            case NORTH:
                 return isValidMove(player.getY() - 1, 0);
-            case OST:
+            case EAST:
                 return isValidMove(player.getX() + 1, 14);
-            case NORDOST:
+            case NORTH_EAST:
                 return isValidMove(player.getY() - 1, 0) && isValidMove(player.getX() + 1, 14);
-            case SUEDOST:
+            case SOUTH_EAST:
                 return isValidMove(player.getX() + 1, 14) && isValidMove(player.getY() + 1, 9);
-            case SUEDWEST:
+            case SOUTH_WEST:
                 return isValidMove(player.getX() - 1, 0) && isValidMove(player.getY() + 1, 9);
-            case NORDWEST:
+            case NORTH_WEST:
                 return isValidMove(player.getX() - 1, 0) && isValidMove(player.getY() - 1, 0);
             case NOMOVE:
                 return true;

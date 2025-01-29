@@ -2,7 +2,6 @@ package Services;
 
 import Enums.Directions;
 import Models.*;
-import Views.*;
 
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -11,25 +10,29 @@ import java.util.ArrayList;
 @Service
 public class MoveService {
 
-    private List<Robot> robots = new ArrayList<>();
-    private List <Map> maps = new ArrayList<>();
-    private List <Move> moves = new ArrayList<>();
+    private List<Move> moves = new ArrayList<>();
+    private List<Robot> robot = new ArrayList<>();
+    private Map map;
 
-    public List<Move> getMovesByGameId(String gameId) {
+    public List<Move> getMovesByGameId(String gameId){
         List<Move> gameMoves = new ArrayList<>();
-        for (Move move : moves) {
-            if (move.getGameId().equals(gameId)) {
-                moves.add(move);
+        for (Move move : moves){
+            if (move.getGameId().equals(gameId)){
+                gameMoves.add(move);
             }
         }
         return gameMoves;
     }
+
+    public MoveService() {
+        this.map = new Map(15, 10);
+    }
+
     public Move makeMove(String gameId, String playerId, NewMove newMove) {
         Robot player = getRobotById(playerId);
         Robot target = getTargetByGameId(gameId);
 
         while (!player.isKnockedOut() && !target.isKnockedOut()) {
-            DisplayWinnerView.display(player, target);
             int moveCount = 1;
             while (moveCount <= player.getMovementRange() && !player.isKnockedOut() && !target.isKnockedOut()) {
                 Directions direction = newMove.getDirection();
@@ -40,11 +43,8 @@ public class MoveService {
                 } else {
                     System.out.println("Zug ungültig.");
                 }
-                BattlefieldView.display(robots, maps);
-
                 if (RobotService.inRange(player, target)) {
                     Robot.attack(player, target);
-                    DisplayWinnerView.display(player, target);
                 }
             }
         }
@@ -59,7 +59,7 @@ public class MoveService {
     }
 
     private Robot getRobotById(String playerId) {
-        for (Robot robot : robots) {
+        for (Robot robot : robot) {
             if (robot.getId().equals(playerId)) {
                 return robot;
             }
@@ -68,11 +68,11 @@ public class MoveService {
     }
 
     private Robot getTargetByGameId(String gameId) {
-        for (MapData map : maps) {
-            if (map.getId().equals(gameId)) {
-                return map.getTarget();
-            }
+        if (map.getId().equals(gameId)) {
+            return map.getTarget();
         }
         return null;
     }
 }
+
+

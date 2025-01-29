@@ -1,5 +1,4 @@
 package Models;
-import Models.Coordinates;
 
 public class Robot {
     private String id;

@@ -5,7 +5,7 @@ import Models.Robot;
 import java.util.Scanner;
 
 public class AskSkillPointsView {
-    private static final int TOTAL_SKILLPOINTS = 10;
+    private static final int TOTAL_SKILLPOINTS = 15;
     private static final String MOVEMENT = "m";
     private static final String ATTACK_DAMAGE = "d";
     private static final String HEALTH = "g";
@@ -13,7 +13,8 @@ public class AskSkillPointsView {
     /**
      * Verteilt die Skillpunkte auf die Attribute des Roboters basierend auf Nutzereingaben.
      *
-     * @param player Roboter, dessen Attribute angepasst werden sollen.
+     * @param player
+     * Roboter, dessen Attribute verteilt werden.
      */
 
     public static void setStats(Robot player) {
@@ -21,8 +22,8 @@ public class AskSkillPointsView {
         Scanner scanner = new Scanner(System.in);
 
         while (spend < TOTAL_SKILLPOINTS) {
-            System.out.println("Bitte verteilen Sie 10 Skillpoints auf die folgenden Attribute Ihres Roboters: \n Bewegungsrate: "+ player.getMovementRange() + "\n Schaden: "+ player.getAttackDamage() + "\n Gesundheit: " + player.getHealth() + "\n Reichweite: " + player.getAttackRange());
-            System.out.println("Drücken Sie m für Movementrange, d für Schaden, g für Gesundheit und r für Angriffsreichweite. Sie können noch "+(TOTAL_SKILLPOINTS - spend)+" Punkte verteilen.");
+            System.out.println("Bitte verteile 10 Skillpoints auf die folgenden Attribute deines Roboters: \n Bewegungsrate: "+ player.getMovementRange() + "\n Schaden: "+ player.getAttackDamage() + "\n Gesundheit: " + player.getHealth() + "\n Reichweite: " + player.getAttackRange());
+            System.out.println("Drücke m für Movementrange, d für Schaden, g für Gesundheit und r für Angriffsreichweite. Du kannst noch "+(TOTAL_SKILLPOINTS - spend)+" Punkte verteilen.");
             String input = scanner.nextLine();
 
             switch (input) {
@@ -51,9 +52,14 @@ public class AskSkillPointsView {
     /**
      * Zeigt die aktuellen Attribute des Roboters an.
      *
-     * @param player Roboter, dessen Attribute angezeigt werden sollen.
+     * @param player
+     *
      */
     public static void display(Robot player) {
-        System.out.println("Die Attribute Ihres Roboters: \n Bewegungsrate: "+ player.getMovementRange() + "\n Schaden: "+ player.getAttackDamage() + "\n Gesundheit: " + player.getHealth() + "\n Reichweite: " + player.getAttackRange());
+        System.out.println("Die Attribute Ihres Roboters: \n" +
+                " Bewegungsrate: " + player.getMovementRange() + "\n Schaden: "
+                + player.getAttackDamage() + "\n Gesundheit: "
+                + player.getHealth() + "\n Reichweite: "
+                + player.getAttackRange());
     }
 }

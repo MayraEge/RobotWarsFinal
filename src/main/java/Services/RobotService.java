@@ -6,14 +6,14 @@ import Models.Robot;
 public class RobotService {
     public static Enum<Directions> fromUserInput(int userChoice){
         return switch (userChoice) {
-            case 8 -> Directions.NORD;
-            case 9 -> Directions.NORDOST;
-            case 6 -> Directions.OST;
-            case 3 -> Directions.SUEDOST;
-            case 2 -> Directions.SUED;
-            case 1 -> Directions.SUEDWEST;
+            case 8 -> Directions.NORTH;
+            case 9 -> Directions.NORTH_EAST;
+            case 6 -> Directions.EAST;
+            case 3 -> Directions.SOUTH_EAST;
+            case 2 -> Directions.SOUTH;
+            case 1 -> Directions.SOUTH_WEST;
             case 4 -> Directions.WEST;
-            case 7 -> Directions.NORDWEST;
+            case 7 -> Directions.NORTH_WEST;
             default -> Directions.NOMOVE;
         };
     }
